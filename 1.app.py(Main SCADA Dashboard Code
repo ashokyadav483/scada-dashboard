@@ -1,0 +1,46 @@
+import streamlit as st
+import pandas as pd
+import time
+
+st.set_page_config(page_title="SCADA Dashboard", layout="wide")
+
+st.title("📊 SCADA Real-Time Dashboard")
+
+# Auto-refresh
+refresh_rate = st.sidebar.slider("Refresh Rate (sec)", 1, 10, 2)
+
+# Load Data
+def load_data():
+    try:
+        df = pd.read_csv("data_log.csv")
+        return df
+    except:
+        return pd.DataFrame(columns=["Time", "Value"])
+
+# Dashboard Loop
+placeholder = st.empty()
+
+while True:
+    df = load_data()
+
+    with placeholder.container():
+        st.subheader("Live Data")
+
+        if not df.empty:
+            # Convert Time
+            df["Time"] = pd.to_datetime(df["Time"])
+
+            # KPIs
+            col1, col2 = st.columns(2)
+            col1.metric("Latest Value", df["Value"].iloc[-1])
+            col2.metric("Total Records", len(df))
+
+            # Line Chart
+            st.line_chart(df.set_index("Time"))
+
+            # Table
+            st.dataframe(df.tail(10))
+        else:
+            st.warning("No data available. Run PLC logger first.")
+
+    time.sleep(refresh_rate)
