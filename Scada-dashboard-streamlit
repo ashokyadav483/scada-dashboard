@@ -1,6 +1,0 @@
-scada-dashboard-streamlit/
-│
-├── app.py
-├── data_log.csv
-├── requirements.txt
-└── README.md
