@@ -1,19 +1,22 @@
-# SCADA Dashboard Project
+# SCADA Dashboard (Streamlit)
 
 ## 📌 Overview
-This project is a real-time SCADA dashboard for industrial automation.
+This project is a real-time SCADA dashboard for monitoring PLC data.
 
 ## ⚙️ Features
-- PLC Data Monitoring
-- Real-time Dashboard (Streamlit)
-- OPC UA Communication
-- Data Logging
+- Live data visualization
+- Real-time dashboard
+- KPI display
+- Trend chart
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies
 - Python
 - Streamlit
-- OPC UA
 - Pandas
 
-## 🚀 Author
+## 🚀 Run Project
+pip install -r requirements.txt  
+streamlit run app.py
+
+## 👨‍💻 Author
 Ashok Kumar Yadav
